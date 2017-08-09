@@ -10,7 +10,7 @@ import rx.Observable;
  */
 
 public interface MovieContract {
-    interface Model extends BaseModel(){
-        Observable<MovieBeen>
-    }
+//    interface Model extends BaseModel(){
+//        Observable<MovieBeen>
+//    }
 }

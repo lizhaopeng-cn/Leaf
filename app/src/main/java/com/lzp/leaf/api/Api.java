@@ -19,24 +19,26 @@ public class Api {
 
     private static final int DEFAULT_TIMEOUT = 5;
 
-    private Retrofit retrofit;
-    private MovieModel movieModel;
+    private static Retrofit retrofit;
+    private static ApiService apiService;
 
-    public static Api newInstance(){
-        return new Api();
+    private static void initApi(){
+        if(retrofit == null){
+            OkHttpClient.Builder client = new OkHttpClient().newBuilder();
+            client.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+
+            retrofit = new Retrofit.Builder()
+                    .client(client.build())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .baseUrl(BASE_URL)
+                    .build();
+        }
+
     }
 
-    private Api(){
-        OkHttpClient.Builder client = new OkHttpClient().newBuilder();
-        client.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-
-        retrofit = new Retrofit.Builder()
-                .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL)
-                .build();
-
-        movieModel = retrofit.create(MovieModel.class);
+    public static ApiService getApiService(){
+        initApi();
+        return apiService = retrofit.create(ApiService.class);
     }
 }
