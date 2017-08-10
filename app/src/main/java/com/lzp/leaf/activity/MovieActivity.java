@@ -107,7 +107,7 @@ public class MovieActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-//        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @OnClick(R.id.fab)
@@ -150,7 +150,6 @@ public class MovieActivity extends BaseActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    @OnClick
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
