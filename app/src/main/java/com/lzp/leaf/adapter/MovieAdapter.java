@@ -56,15 +56,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     class MovieViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.iv_movie) ImageView image;
-        @BindView(R.id.tv_movie_title) TextView title;
-        @BindView(R.id.tv_movie_rating) TextView rating;
-//        @BindView(R.id.tv_movie_derecter) TextView director;
-//        @BindView(R.id.tv_movie_casts) TextView casts;
+        @BindView(R.id.iv_movie)
+        ImageView image;
+        @BindView(R.id.tv_movie_title)
+        TextView title;
+        @BindView(R.id.tv_movie_rating)
+        TextView rating;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(context,itemView);
+            ButterKnife.bind(this,itemView);
         }
     }
 }

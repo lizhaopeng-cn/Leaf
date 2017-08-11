@@ -4,5 +4,5 @@ package com.lzp.leaf.base;
  * Created by lzp on 2017/8/8.
  */
 
-public class BaseView {
+public interface BaseView {
 }
