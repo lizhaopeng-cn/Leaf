@@ -1,12 +1,15 @@
 package com.lzp.leaf.adapter;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lzp.leaf.R;
@@ -47,6 +50,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.rating.setText(String.valueOf(movie.getRating().getAverage()));
 //        holder.director.setText(movie.getDirectors().get(0).getName());
 //        holder.casts.setText(movie.getCasts().get(0).getName());
+        Log.i("onClick","onBindViewHolder"+position);
+
+        holder.rating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("onClick","rating");
+                Snackbar.make(v,"rating",Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -66,6 +78,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         public MovieViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("onClick","title");
+                    Snackbar.make(v,"title",Snackbar.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

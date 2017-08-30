@@ -17,6 +17,7 @@ import com.lzp.leaf.R;
 import com.lzp.leaf.adapter.MovieAdapter;
 import com.lzp.leaf.api.Api;
 import com.lzp.leaf.api.ApiConstants;
+import com.lzp.leaf.api.RxSubscriber;
 import com.lzp.leaf.base.BaseFragment;
 import com.lzp.leaf.been.MovieBeen;
 
@@ -59,15 +60,21 @@ public class MovieFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         rvMovie = (RecyclerView) view.findViewById(R.id.rv_movie);
         type = getArguments().getString("type");
-        if(!TextUtils.isEmpty(type)){
-            if(TextUtils.equals(type, ApiConstants.IN_THEATERS)){
-                getInTheatersMovieDatas();
-            }else if(TextUtils.equals(type, ApiConstants.COMING_SOON)){
-                getComingSoonMovieDatas();
-            }else if(TextUtils.equals(type, ApiConstants.Top_250)){
-                getTop250MovieDatas();
+        Api.getNetData(type, new RxSubscriber<MovieBeen>() {
+            @Override
+            public void onNext(MovieBeen movieBeen) {
+                initRecycler(movieBeen);
             }
-        }
+        });
+//        if(!TextUtils.isEmpty(type)){
+//            if(TextUtils.equals(type, ApiConstants.IN_THEATERS)){
+//                getInTheatersMovieDatas();
+//            }else if(TextUtils.equals(type, ApiConstants.COMING_SOON)){
+//                getComingSoonMovieDatas();
+//            }else if(TextUtils.equals(type, ApiConstants.Top_250)){
+//                getTop250MovieDatas();
+//            }
+//        }
         return view;
     }
 
