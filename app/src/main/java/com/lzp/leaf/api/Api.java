@@ -30,6 +30,12 @@ public class Api {
     private static Retrofit retrofit;
     private static ApiService apiService;
 
+    public static ApiService getApiService(){
+        initApi();
+        apiService = retrofit.create(ApiService.class);
+        return apiService;
+    }
+
     private static void initApi(){
         if(retrofit == null){
             OkHttpClient.Builder client = new OkHttpClient().newBuilder();
@@ -43,12 +49,6 @@ public class Api {
                     .build();
         }
 
-    }
-
-    public static ApiService getApiService(){
-        initApi();
-        apiService = retrofit.create(ApiService.class);
-        return apiService;
     }
 
     private static void setSubscribe(Observable observable, RxSubscriber rxSubscriber){
@@ -71,8 +71,8 @@ public class Api {
                 Observable<MovieBeen> observableComingSoon = apiService.getComingSoon();
                 setSubscribe(observableComingSoon, rxSubscriber);
                 break;
-            case ApiConstants.Top_250:
-                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,10);
+            case ApiConstants.TOP_250:
+                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,100);
                 setSubscribe(observableTop250, rxSubscriber);
                 break;
             default:

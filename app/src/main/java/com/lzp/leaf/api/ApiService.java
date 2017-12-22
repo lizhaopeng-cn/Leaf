@@ -18,6 +18,6 @@ public interface ApiService {
     @GET(ApiConstants.COMING_SOON)
     Observable<MovieBeen> getComingSoon();
 
-    @GET(ApiConstants.Top_250)
+    @GET(ApiConstants.TOP_250)
     Observable<MovieBeen> getTop250(@Query("start") int start, @Query("count") int count);
 }

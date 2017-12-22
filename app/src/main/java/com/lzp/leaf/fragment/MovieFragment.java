@@ -102,62 +102,62 @@ public class MovieFragment extends BaseFragment {
                     }
                 });
     }
-
-    private void getComingSoonMovieDatas() {
-        Api.getApiService()
-                .getComingSoon()
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MovieBeen>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.i("log","onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("log","onError");
-                    }
-
-                    @Override
-                    public void onNext(MovieBeen movieBeen) {
-                        Log.i("log","onNext");
-                        initRecycler(movieBeen);
-                    }
-                });
-    }
-
-    private void getTop250MovieDatas() {
-        Api.getApiService()
-                .getTop250(0, 10)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MovieBeen>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.i("log","onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("log","onError");
-                    }
-
-                    @Override
-                    public void onNext(MovieBeen movieBeen) {
-                        Log.i("log","onNext");
-                        initRecycler(movieBeen);
-                    }
-                });
-    }
+//
+//    private void getComingSoonMovieDatas() {
+//        Api.getApiService()
+//                .getComingSoon()
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<MovieBeen>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Log.i("log","onCompleted");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("log","onError");
+//                    }
+//
+//                    @Override
+//                    public void onNext(MovieBeen movieBeen) {
+//                        Log.i("log","onNext");
+//                        initRecycler(movieBeen);
+//                    }
+//                });
+//    }
+//
+//    private void getTop250MovieDatas() {
+//        Api.getApiService()
+//                .getTop250(0, 10)
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<MovieBeen>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Log.i("log","onCompleted");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("log","onError");
+//                    }
+//
+//                    @Override
+//                    public void onNext(MovieBeen movieBeen) {
+//                        Log.i("log","onNext");
+//                        initRecycler(movieBeen);
+//                    }
+//                });
+//    }
 
     private void initRecycler(MovieBeen movieBeen) {
         movieAdapter = new MovieAdapter(getActivity(),movieBeen);
         rvMovie.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-//                        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-//                        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL));
+//        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+//        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL));
         rvMovie.setAdapter(movieAdapter);
     }
 }

@@ -75,7 +75,7 @@ public class MovieActivity extends BaseActivity
         fragments = new ArrayList<>();
         inTheatersMovieFragment = MovieFragment.newInstance(ApiConstants.IN_THEATERS);
         comingSoonMovieFragment = MovieFragment.newInstance(ApiConstants.COMING_SOON);
-        top250MovieFragment = MovieFragment.newInstance(ApiConstants.Top_250);
+        top250MovieFragment = MovieFragment.newInstance(ApiConstants.TOP_250);
         fragments.add(inTheatersMovieFragment);
         fragments.add(comingSoonMovieFragment);
         fragments.add(top250MovieFragment);
@@ -160,7 +160,6 @@ public class MovieActivity extends BaseActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
