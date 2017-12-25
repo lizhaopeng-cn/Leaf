@@ -1,15 +1,13 @@
 package com.lzp.leaf.api;
 
-import android.support.design.widget.Snackbar;
-import android.text.TextUtils;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.lzp.leaf.been.MovieBeen;
-import com.lzp.leaf.model.MovieModel;
+import com.lzp.leaf.been.movie.MovieBeen;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,8 +36,18 @@ public class Api {
 
     private static void initApi(){
         if(retrofit == null){
-            OkHttpClient.Builder client = new OkHttpClient().newBuilder();
-            client.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                @Override
+                public void log(String message) {
+                    //打印retrofit日志
+                    Log.i("RetrofitLog","retrofitBack = "+message);
+                }
+            });
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            OkHttpClient.Builder client = new OkHttpClient()
+                    .newBuilder().addInterceptor(loggingInterceptor)
+                    .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
             retrofit = new Retrofit.Builder()
                     .client(client.build())
@@ -51,7 +59,7 @@ public class Api {
 
     }
 
-    private static void setSubscribe(Observable observable, RxSubscriber rxSubscriber){
+    public static void setSubscribe(Observable observable, RxSubscriber rxSubscriber){
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

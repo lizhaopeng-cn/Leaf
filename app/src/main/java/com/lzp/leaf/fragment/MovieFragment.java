@@ -2,28 +2,22 @@ package com.lzp.leaf.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.lzp.leaf.R;
 import com.lzp.leaf.adapter.MovieAdapter;
 import com.lzp.leaf.api.Api;
-import com.lzp.leaf.api.ApiConstants;
 import com.lzp.leaf.api.RxSubscriber;
 import com.lzp.leaf.base.BaseFragment;
-import com.lzp.leaf.been.MovieBeen;
+import com.lzp.leaf.been.movie.MovieBeen;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -78,30 +72,30 @@ public class MovieFragment extends BaseFragment {
         return view;
     }
 
-    private void getInTheatersMovieDatas() {
-        Api.getApiService()
-                .getInTheaters()
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MovieBeen>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.i("log","onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("log","onError");
-                    }
-
-                    @Override
-                    public void onNext(MovieBeen movieBeen) {
-                        Log.i("log","onNext");
-                        initRecycler(movieBeen);
-                    }
-                });
-    }
+//    private void getInTheatersMovieDatas() {
+//        Api.getApiService()
+//                .getInTheaters()
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<MovieBeen>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Log.i("log","onCompleted");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("log","onError");
+//                    }
+//
+//                    @Override
+//                    public void onNext(MovieBeen movieBeen) {
+//                        Log.i("log","onNext");
+//                        initRecycler(movieBeen);
+//                    }
+//                });
+//    }
 //
 //    private void getComingSoonMovieDatas() {
 //        Api.getApiService()

@@ -1,6 +1,7 @@
 package com.lzp.leaf.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,11 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lzp.leaf.R;
-import com.lzp.leaf.been.MovieBeen;
+import com.lzp.leaf.activity.MovieDetailActivity;
+import com.lzp.leaf.been.movie.MovieBeen;
+import com.lzp.leaf.been.movie.MovieSubjectsBeen;
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     private Context context;
     private MovieBeen movieBeen;
-    private List<MovieBeen.SubjectsBean> movies;
+    private List<MovieSubjectsBeen> movies;
 
     public MovieAdapter(Context context, MovieBeen movieBeen){
         this.context = context;
@@ -44,7 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        MovieBeen.SubjectsBean movie = movies.get(position);
+        final MovieSubjectsBeen movie = movies.get(position);
         Glide.with(context).load(movie.getImages().getMedium()).into(holder.image);
         holder.title.setText(movie.getTitle());
         holder.rating.setText(String.valueOf(movie.getRating().getAverage()));
@@ -57,6 +59,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             public void onClick(View v) {
                 Log.i("onClick","rating");
                 Snackbar.make(v,"rating",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra("subjectId", movie.getId());
+                context.startActivity(intent);
             }
         });
     }
