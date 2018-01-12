@@ -66,25 +66,4 @@ public class Api {
                 .subscribe(rxSubscriber);
     }
 
-//    public static void getNetData(String api, RxSubscriber rxSubscriber){
-//        if(apiService == null){
-//            getApiService();
-//        }
-//        switch (api){
-//            case ApiConstants.IN_THEATERS:
-//                Observable<MovieBeen> observableInTheaters = apiService.getInTheaters();
-//                setSubscribe(observableInTheaters, rxSubscriber);
-//                break;
-//            case ApiConstants.COMING_SOON:
-//                Observable<MovieBeen> observableComingSoon = apiService.getComingSoon();
-//                setSubscribe(observableComingSoon, rxSubscriber);
-//                break;
-//            case ApiConstants.TOP_250:
-//                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,100);
-//                setSubscribe(observableTop250, rxSubscriber);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 }

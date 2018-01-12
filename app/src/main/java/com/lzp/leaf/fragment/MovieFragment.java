@@ -95,7 +95,7 @@ public class MovieFragment extends BaseFragment {
             @Override
             public int getSpanSize(int position) {
                 if(position == 0){
-                    return 3;
+                    return 2;
                 }else{
                     return 1;
                 }
