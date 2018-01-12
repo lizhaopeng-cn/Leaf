@@ -1,7 +1,7 @@
 package com.lzp.leaf.api;
 
 import com.lzp.leaf.been.movie.MovieBeen;
-import com.lzp.leaf.been.movie.MovieCelebrity;
+import com.lzp.leaf.been.movie.MovieCelebrityBeen;
 import com.lzp.leaf.been.movie.MovieSubjectsBeen;
 
 import retrofit2.http.GET;
@@ -28,5 +28,5 @@ public interface ApiService {
     Observable<MovieSubjectsBeen> getSubject(@Path("subjectId") String subjectId);
 
     @GET(ApiConstants.Movie + ApiConstants.CELEBRITY + "/" + "{celebrityId}")
-    Observable<MovieCelebrity> getCelebrity(@Path("celebrityId") String celebrityId);
+    Observable<MovieCelebrityBeen> getCelebrity(@Path("celebrityId") String celebrityId);
 }

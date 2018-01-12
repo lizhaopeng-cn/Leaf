@@ -8,7 +8,7 @@ import java.util.List;
  * Created by lzp48947 on 2017/12/25.
  */
 
-public class MovieCelebrity extends DouBanError {
+public class MovieCelebrityBeen extends DouBanError {
 
     /**
      * id : 1054531

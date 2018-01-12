@@ -12,12 +12,15 @@ import android.view.ViewGroup;
 import com.lzp.leaf.R;
 import com.lzp.leaf.adapter.MovieAdapter;
 import com.lzp.leaf.api.Api;
+import com.lzp.leaf.api.ApiConstants;
+import com.lzp.leaf.api.ApiService;
 import com.lzp.leaf.api.RxSubscriber;
 import com.lzp.leaf.base.BaseFragment;
 import com.lzp.leaf.been.movie.MovieBeen;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -54,102 +57,51 @@ public class MovieFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         rvMovie = (RecyclerView) view.findViewById(R.id.rv_movie);
         type = getArguments().getString("type");
-        Api.getNetData(type, new RxSubscriber<MovieBeen>() {
+        ApiService apiService = Api.getApiService();
+
+        getNetData(apiService, type, new RxSubscriber<MovieBeen>() {
             @Override
             public void onNext(MovieBeen movieBeen) {
                 initRecycler(movieBeen);
             }
         });
-//        if(!TextUtils.isEmpty(type)){
-//            if(TextUtils.equals(type, ApiConstants.IN_THEATERS)){
-//                getInTheatersMovieDatas();
-//            }else if(TextUtils.equals(type, ApiConstants.COMING_SOON)){
-//                getComingSoonMovieDatas();
-//            }else if(TextUtils.equals(type, ApiConstants.Top_250)){
-//                getTop250MovieDatas();
-//            }
-//        }
         return view;
     }
 
-//    private void getInTheatersMovieDatas() {
-//        Api.getApiService()
-//                .getInTheaters()
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<MovieBeen>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        Log.i("log","onCompleted");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        Log.i("log","onError");
-//                    }
-//
-//                    @Override
-//                    public void onNext(MovieBeen movieBeen) {
-//                        Log.i("log","onNext");
-//                        initRecycler(movieBeen);
-//                    }
-//                });
-//    }
-//
-//    private void getComingSoonMovieDatas() {
-//        Api.getApiService()
-//                .getComingSoon()
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<MovieBeen>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        Log.i("log","onCompleted");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        Log.i("log","onError");
-//                    }
-//
-//                    @Override
-//                    public void onNext(MovieBeen movieBeen) {
-//                        Log.i("log","onNext");
-//                        initRecycler(movieBeen);
-//                    }
-//                });
-//    }
-//
-//    private void getTop250MovieDatas() {
-//        Api.getApiService()
-//                .getTop250(0, 10)
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<MovieBeen>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        Log.i("log","onCompleted");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        Log.i("log","onError");
-//                    }
-//
-//                    @Override
-//                    public void onNext(MovieBeen movieBeen) {
-//                        Log.i("log","onNext");
-//                        initRecycler(movieBeen);
-//                    }
-//                });
-//    }
+    public void getNetData(ApiService apiService, String api, RxSubscriber rxSubscriber){
+        switch (api){
+            case ApiConstants.IN_THEATERS:
+                Observable<MovieBeen> observableInTheaters = apiService.getInTheaters();
+                Api.setSubscribe(observableInTheaters, rxSubscriber);
+                break;
+            case ApiConstants.COMING_SOON:
+                Observable<MovieBeen> observableComingSoon = apiService.getComingSoon();
+                Api.setSubscribe(observableComingSoon, rxSubscriber);
+                break;
+            case ApiConstants.TOP_250:
+                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,100);
+                Api.setSubscribe(observableTop250, rxSubscriber);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     private void initRecycler(MovieBeen movieBeen) {
         movieAdapter = new MovieAdapter(getActivity(),movieBeen);
-        rvMovie.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if(position == 0){
+                    return 3;
+                }else{
+                    return 1;
+                }
+            }
+        });
+        rvMovie.setLayoutManager(gridLayoutManager);
 //        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 //        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL));
         rvMovie.setAdapter(movieAdapter);

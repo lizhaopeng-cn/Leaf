@@ -29,34 +29,34 @@ public class Api {
     private static ApiService apiService;
 
     public static ApiService getApiService(){
-        initApi();
-        apiService = retrofit.create(ApiService.class);
+        if(retrofit == null){
+            initApi();
+        }
         return apiService;
     }
 
     private static void initApi(){
-        if(retrofit == null){
-            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                @Override
-                public void log(String message) {
-                    //打印retrofit日志
-                    Log.i("RetrofitLog","retrofitBack = "+message);
-                }
-            });
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                //打印retrofit日志
+                Log.i("RetrofitLog","retrofitBack = "+message);
+            }
+        });
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-            OkHttpClient.Builder client = new OkHttpClient()
-                    .newBuilder().addInterceptor(loggingInterceptor)
-                    .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        OkHttpClient.Builder client = new OkHttpClient()
+                .newBuilder().addInterceptor(loggingInterceptor)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
-            retrofit = new Retrofit.Builder()
-                    .client(client.build())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .baseUrl(BASE_URL)
-                    .build();
-        }
+        retrofit = new Retrofit.Builder()
+                .client(client.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL)
+                .build();
 
+        apiService = retrofit.create(ApiService.class);
     }
 
     public static void setSubscribe(Observable observable, RxSubscriber rxSubscriber){
@@ -66,25 +66,25 @@ public class Api {
                 .subscribe(rxSubscriber);
     }
 
-    public static void getNetData(String api, RxSubscriber rxSubscriber){
-        if(apiService == null){
-            getApiService();
-        }
-        switch (api){
-            case ApiConstants.IN_THEATERS:
-                Observable<MovieBeen> observableInTheaters = apiService.getInTheaters();
-                setSubscribe(observableInTheaters, rxSubscriber);
-                break;
-            case ApiConstants.COMING_SOON:
-                Observable<MovieBeen> observableComingSoon = apiService.getComingSoon();
-                setSubscribe(observableComingSoon, rxSubscriber);
-                break;
-            case ApiConstants.TOP_250:
-                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,100);
-                setSubscribe(observableTop250, rxSubscriber);
-                break;
-            default:
-                break;
-        }
-    }
+//    public static void getNetData(String api, RxSubscriber rxSubscriber){
+//        if(apiService == null){
+//            getApiService();
+//        }
+//        switch (api){
+//            case ApiConstants.IN_THEATERS:
+//                Observable<MovieBeen> observableInTheaters = apiService.getInTheaters();
+//                setSubscribe(observableInTheaters, rxSubscriber);
+//                break;
+//            case ApiConstants.COMING_SOON:
+//                Observable<MovieBeen> observableComingSoon = apiService.getComingSoon();
+//                setSubscribe(observableComingSoon, rxSubscriber);
+//                break;
+//            case ApiConstants.TOP_250:
+//                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,100);
+//                setSubscribe(observableTop250, rxSubscriber);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }
