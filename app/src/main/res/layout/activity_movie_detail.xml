@@ -15,9 +15,10 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextAppearance="@style/AppTheme.MyTitleBar"
+            app:expandedTitleTextAppearance="@style/AppTheme.MyTitleBarExpanded"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
 
@@ -78,10 +79,7 @@
 
             </android.support.v7.widget.CardView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1000dp"
-                android:text="123"/>
+            <include layout="@layout/include_movie_detail_info"></include>
 
         </LinearLayout>
 

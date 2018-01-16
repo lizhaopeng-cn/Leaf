@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="id"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="中文名"/>
+
+    <TextView
+        android:id="@+id/tv_name_en"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="英文名"/>
+
+    <TextView
+        android:id="@+id/tv_alt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="条目页URL"/>
+
+    <TextView
+        android:id="@+id/tv_mobile_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="条目移动版URL"/>
+
+    <TextView
+        android:id="@+id/tv_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="简介"/>
+
+    <TextView
+        android:id="@+id/tv_aka"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更多中文名"/>
+
+    <TextView
+        android:id="@+id/tv_aka_en"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更多英文名"/>
+
+    <TextView
+        android:id="@+id/tv_website"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="官方网站"/>
+
+    <TextView
+        android:id="@+id/tv_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="性别"/>
+
+    <TextView
+        android:id="@+id/tv_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="出生日期"/>
+
+    <TextView
+        android:id="@+id/tv_born_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="出生地"/>
+
+    <TextView
+        android:id="@+id/tv_professions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="职业"/>
+
+    <TextView
+        android:id="@+id/tv_constellation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="星座"/>
+
+    <ImageView
+        android:id="@+id/iv_avatars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="头像"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_works"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
