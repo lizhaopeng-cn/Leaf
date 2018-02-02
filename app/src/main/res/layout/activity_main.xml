@@ -9,9 +9,24 @@
     tools:openDrawer="start">
 
     <include
+        android:id="@+id/content"
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_fragment"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

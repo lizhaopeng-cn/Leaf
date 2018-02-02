@@ -1,5 +1,6 @@
 package com.lzp.leaf.api;
 
+import com.lzp.leaf.been.book.BookBeen;
 import com.lzp.leaf.been.movie.MovieBeen;
 import com.lzp.leaf.been.movie.MovieCelebrityBeen;
 import com.lzp.leaf.been.movie.MovieSubjectsBeen;
@@ -15,18 +16,21 @@ import rx.Observable;
 
 public interface ApiService {
 
-    @GET(ApiConstants.Movie + ApiConstants.IN_THEATERS)
+    @GET(ApiConstants.MOVIE + ApiConstants.IN_THEATERS)
     Observable<MovieBeen> getInTheaters();
 
-    @GET(ApiConstants.Movie + ApiConstants.COMING_SOON)
+    @GET(ApiConstants.MOVIE + ApiConstants.COMING_SOON)
     Observable<MovieBeen> getComingSoon();
 
-    @GET(ApiConstants.Movie + ApiConstants.TOP_250)
+    @GET(ApiConstants.MOVIE + ApiConstants.TOP_250)
     Observable<MovieBeen> getTop250(@Query("start") int start, @Query("count") int count);
 
-    @GET(ApiConstants.Movie + ApiConstants.SUBJECT + "/" + "{subjectId}")
+    @GET(ApiConstants.MOVIE + ApiConstants.SUBJECT + "/" + "{subjectId}")
     Observable<MovieSubjectsBeen> getSubject(@Path("subjectId") String subjectId);
 
-    @GET(ApiConstants.Movie + ApiConstants.CELEBRITY + "/" + "{celebrityId}")
+    @GET(ApiConstants.MOVIE + ApiConstants.CELEBRITY + "/" + "{celebrityId}")
     Observable<MovieCelebrityBeen> getCelebrity(@Path("celebrityId") String celebrityId);
+
+    @GET(ApiConstants.BOOK + ApiConstants.SEARCH)
+    Observable<BookBeen> getBooks(@Query("q") String keyword);
 }

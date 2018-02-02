@@ -1,5 +1,6 @@
 package com.lzp.leaf.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -148,7 +149,8 @@ public class MovieActivity extends BaseActivity
         if (id == R.id.nav_camera) {
             setFabClick();
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(MovieActivity.this, BookActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
