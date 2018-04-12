@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +20,12 @@ import com.lzp.leaf.been.movie.MovieBeen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by lzp on 2017/8/8.
  */
 
-public class MovieFragment extends BaseFragment {
+public class MovieFragmentChild extends BaseFragment {
 
     @BindView(R.id.rv_movie)
     RecyclerView rvMovie;
@@ -40,11 +36,11 @@ public class MovieFragment extends BaseFragment {
 
     private String type;
 
-    public static MovieFragment newInstance(String type) {
+    public static MovieFragmentChild newInstance(String type) {
 
         Bundle bundle = new Bundle();
         bundle.putString("type", type);
-        MovieFragment fragment = new MovieFragment();
+        MovieFragmentChild fragment = new MovieFragmentChild();
         fragment.setArguments(bundle);
         return fragment;
     }
