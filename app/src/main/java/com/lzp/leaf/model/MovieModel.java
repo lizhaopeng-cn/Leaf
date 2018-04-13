@@ -1,7 +1,7 @@
 package com.lzp.leaf.model;
 
 
-import com.lzp.leaf.base.BaseModel;
+import com.lzp.basemodule.BaseModel;
 
 /**
  * Created by lzp on 2017/8/1.

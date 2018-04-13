@@ -1,6 +1,5 @@
 package com.lzp.leaf.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -10,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lzp.basemodule.BaseActivity;
 import com.lzp.leaf.R;
 import com.lzp.leaf.api.Api;
 import com.lzp.leaf.api.RxSubscriber;
-import com.lzp.leaf.base.BaseActivity;
 import com.lzp.leaf.been.movie.MovieSubjectsBeen;
 
 import butterknife.BindView;

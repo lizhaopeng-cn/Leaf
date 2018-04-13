@@ -1,7 +1,7 @@
 package com.lzp.leaf.activity;
 
-import android.support.v4.app.FragmentManager;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -13,8 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lzp.arouter.ARouterActivity;
+import com.lzp.basemodule.BaseActivity;
 import com.lzp.leaf.R;
-import com.lzp.leaf.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -99,7 +100,8 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_gallery) {
             goBookFragment();
         } else if (id == R.id.nav_slideshow) {
-
+            Intent intent = new Intent(MainActivity.this, ARouterActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

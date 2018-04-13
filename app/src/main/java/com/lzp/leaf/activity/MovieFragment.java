@@ -11,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lzp.basemodule.BaseFragment;
 import com.lzp.leaf.R;
 import com.lzp.leaf.adapter.MyFragmentPagerAdapter;
 import com.lzp.leaf.api.ApiConstants;
-import com.lzp.leaf.base.BaseFragment;
 import com.lzp.leaf.fragment.MovieFragmentChild;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MovieFragment extends BaseFragment{
+public class MovieFragment extends BaseFragment {
 
     @BindView(R.id.fab) FloatingActionButton fab;
 

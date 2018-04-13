@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lzp.basemodule.BaseFragment;
 import com.lzp.leaf.R;
 import com.lzp.leaf.adapter.MovieAdapter;
 import com.lzp.leaf.api.Api;
 import com.lzp.leaf.api.ApiConstants;
 import com.lzp.leaf.api.ApiService;
 import com.lzp.leaf.api.RxSubscriber;
-import com.lzp.leaf.base.BaseFragment;
 import com.lzp.leaf.been.movie.MovieBeen;
 
 import butterknife.BindView;
