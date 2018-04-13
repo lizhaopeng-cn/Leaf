@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity
 
         initDrawer();
         goMovieFragment();
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     private void initDrawer() {
@@ -96,8 +97,7 @@ public class MainActivity extends BaseActivity
         if (id == R.id.nav_camera) {
             goMovieFragment();
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(MainActivity.this, BookActivity.class);
-            startActivity(intent);
+            goBookFragment();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -117,6 +117,14 @@ public class MainActivity extends BaseActivity
         FragmentTransaction transaction = fm.beginTransaction();
         MovieFragment movieFragment = new MovieFragment();
         transaction.replace(R.id.fragment, movieFragment);
+        transaction.commit();
+    }
+
+    public void goBookFragment(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        BookFragment bookFragment = new BookFragment();
+        transaction.replace(R.id.fragment, bookFragment);
         transaction.commit();
     }
 }

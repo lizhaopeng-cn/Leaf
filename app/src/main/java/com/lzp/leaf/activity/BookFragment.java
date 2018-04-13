@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,6 +18,7 @@ import com.lzp.leaf.api.Api;
 import com.lzp.leaf.api.ApiService;
 import com.lzp.leaf.api.RxSubscriber;
 import com.lzp.leaf.base.BaseActivity;
+import com.lzp.leaf.base.BaseFragment;
 import com.lzp.leaf.been.book.BookBeen;
 import com.lzp.leaf.been.movie.MovieBeen;
 
@@ -27,7 +30,7 @@ import rx.Observable;
  * Created by lzp48947 on 2018/1/26.
  */
 
-public class BookActivity extends BaseActivity {
+public class BookFragment extends BaseFragment {
 
     @BindView(R.id.et_keyword)
     EditText etKeyword;
@@ -38,18 +41,18 @@ public class BookActivity extends BaseActivity {
     @BindView(R.id.rv_result)
     RecyclerView rvResult;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book);
-
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_book, null);
+        ButterKnife.bind(this, view);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toSearch();
             }
         });
+        return view;
     }
 
     public void toSearch(){
@@ -59,8 +62,8 @@ public class BookActivity extends BaseActivity {
             @Override
             public void onNext(BookBeen bookBeen) {
                 if(bookBeen != null){
-                    BookAdapter bookAdapter = new BookAdapter(BookActivity.this, bookBeen);
-                    rvResult.setLayoutManager(new LinearLayoutManager(BookActivity.this));
+                    BookAdapter bookAdapter = new BookAdapter(getActivity(), bookBeen);
+                    rvResult.setLayoutManager(new LinearLayoutManager(getActivity()));
                     rvResult.setAdapter(bookAdapter);
                 }
             }
