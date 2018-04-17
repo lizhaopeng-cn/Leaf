@@ -1,4 +1,4 @@
-package api;
+package com.lzp.basemodule.api;
 
 import android.util.Log;
 
@@ -13,8 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import static api.ApiConstants.BASE_URL;
 
 /**
  * Created by lzp on 2017/8/8.
@@ -51,7 +49,7 @@ public class Api {
                 .client(client.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL)
+                .baseUrl(BaseConstants.BASE_URL)
                 .build();
     }
 

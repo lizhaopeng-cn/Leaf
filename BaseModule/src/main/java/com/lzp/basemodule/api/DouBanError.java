@@ -1,4 +1,4 @@
-package api;
+package com.lzp.basemodule.api;
 
 /**
  * Created by lzp on 2017/8/5.

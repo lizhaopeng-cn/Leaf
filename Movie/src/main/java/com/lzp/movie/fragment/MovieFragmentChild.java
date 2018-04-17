@@ -8,16 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lzp.basemodule.BaseFragment;
+import com.lzp.basemodule.base.BaseFragment;
 import com.lzp.movie.R;
 import com.lzp.movie.R2;
 import com.lzp.movie.adapter.MovieAdapter;
-import com.lzp.movie.api.ApiService;
+import com.lzp.movie.api.MovieConstants;
+import com.lzp.movie.api.MovieService;
 import com.lzp.movie.been.MovieBeen;
 
-import api.Api;
-import api.ApiConstants;
-import api.RxSubscriber;
+import com.lzp.basemodule.api.Api;
+import com.lzp.basemodule.api.BaseConstants;
+import com.lzp.basemodule.api.RxSubscriber;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,9 +55,9 @@ public class MovieFragmentChild extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_movie,container,false);
         ButterKnife.bind(this, view);
         type = getArguments().getString("type");
-        ApiService apiService = Api.getApiService().create(ApiService.class);
+        MovieService movieService = Api.getApiService().create(MovieService.class);
 
-        getNetData(apiService, type, new RxSubscriber<MovieBeen>() {
+        getNetData(movieService, type, new RxSubscriber<MovieBeen>() {
             @Override
             public void onNext(MovieBeen movieBeen) {
                 initRecycler(movieBeen);
@@ -65,18 +66,18 @@ public class MovieFragmentChild extends BaseFragment {
         return view;
     }
 
-    public void getNetData(ApiService apiService, String api, RxSubscriber rxSubscriber){
+    public void getNetData(MovieService movieService, String api, RxSubscriber rxSubscriber){
         switch (api){
-            case ApiConstants.IN_THEATERS:
-                Observable<MovieBeen> observableInTheaters = apiService.getInTheaters();
+            case MovieConstants.IN_THEATERS:
+                Observable<MovieBeen> observableInTheaters = movieService.getInTheaters();
                 Api.setSubscribe(observableInTheaters, rxSubscriber);
                 break;
-            case ApiConstants.COMING_SOON:
-                Observable<MovieBeen> observableComingSoon = apiService.getComingSoon();
+            case MovieConstants.COMING_SOON:
+                Observable<MovieBeen> observableComingSoon = movieService.getComingSoon();
                 Api.setSubscribe(observableComingSoon, rxSubscriber);
                 break;
-            case ApiConstants.TOP_250:
-                Observable<MovieBeen> observableTop250 = apiService.getTop250(0,100);
+            case MovieConstants.TOP_250:
+                Observable<MovieBeen> observableTop250 = movieService.getTop250(0,100);
                 Api.setSubscribe(observableTop250, rxSubscriber);
                 break;
             default:

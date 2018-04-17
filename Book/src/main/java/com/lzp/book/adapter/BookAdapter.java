@@ -1,4 +1,4 @@
-package com.example.book.adapter;
+package com.lzp.book.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.book.R;
-import com.example.book.R2;
-import com.example.book.been.BookBeen;
-import com.example.book.been.BookSubjectsBeen;
+import com.lzp.book.R;
+import com.lzp.book.R2;
+import com.lzp.book.been.BookBeen;
+import com.lzp.book.been.BookSubjectsBeen;
 
 
 import java.util.List;

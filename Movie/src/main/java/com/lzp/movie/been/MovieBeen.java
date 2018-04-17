@@ -1,6 +1,6 @@
 package com.lzp.movie.been;
 
-import api.DouBanError;
+import com.lzp.basemodule.api.DouBanError;
 
 import java.util.List;
 

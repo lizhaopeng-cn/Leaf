@@ -1,4 +1,4 @@
-package com.example.book.fragment;
+package com.lzp.book.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,15 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.book.R;
-import com.example.book.R2;
-import com.example.book.adapter.BookAdapter;
-import com.example.book.api.ApiService;
-import com.example.book.been.BookBeen;
-import com.lzp.basemodule.BaseFragment;
-import api.Api;
+import com.lzp.book.R;
+import com.lzp.book.R2;
+import com.lzp.book.adapter.BookAdapter;
+import com.lzp.book.api.BookService;
+import com.lzp.book.been.BookBeen;
+import com.lzp.basemodule.base.BaseFragment;
+import com.lzp.basemodule.api.Api;
 
-import api.RxSubscriber;
+import com.lzp.basemodule.api.RxSubscriber;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
@@ -53,8 +53,8 @@ public class BookFragment extends BaseFragment {
     }
 
     public void toSearch(){
-        ApiService apiService = Api.getApiService().create(ApiService.class);
-        Observable<BookBeen> observableBooks = apiService.getBooks(etKeyword.getText().toString());
+        BookService bookService = Api.getApiService().create(BookService.class);
+        Observable<BookBeen> observableBooks = bookService.getBooks(etKeyword.getText().toString());
         Api.setSubscribe(observableBooks, new RxSubscriber<BookBeen>() {
             @Override
             public void onNext(BookBeen bookBeen) {

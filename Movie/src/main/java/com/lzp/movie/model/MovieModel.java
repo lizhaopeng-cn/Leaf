@@ -1,7 +1,7 @@
 package com.lzp.movie.model;
 
 
-import com.lzp.basemodule.BaseModel;
+import com.lzp.basemodule.base.BaseModel;
 
 /**
  * Created by lzp on 2017/8/1.

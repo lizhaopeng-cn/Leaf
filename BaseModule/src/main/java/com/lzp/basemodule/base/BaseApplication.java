@@ -1,4 +1,4 @@
-package com.lzp.basemodule;
+package com.lzp.basemodule.base;
 
 import android.app.Application;
 

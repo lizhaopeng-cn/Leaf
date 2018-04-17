@@ -4,7 +4,7 @@ package com.lzp.arouter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.lzp.basemodule.BaseActivity;
+import com.lzp.basemodule.base.BaseActivity;
 
 /**
  * Created by lzp48947 on 2018/4/13.

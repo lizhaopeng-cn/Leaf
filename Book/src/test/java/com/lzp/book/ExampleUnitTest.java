@@ -1,4 +1,4 @@
-package com.example.book;
+package com.lzp.book;
 
 import org.junit.Test;
 

@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.lzp.basemodule.BaseActivity;
-import api.Api;
-import api.RxSubscriber;
+import com.lzp.basemodule.base.BaseActivity;
+import com.lzp.basemodule.api.Api;
+import com.lzp.basemodule.api.RxSubscriber;
 
 import com.lzp.movie.R;
 import com.lzp.movie.R2;
-import com.lzp.movie.api.ApiService;
+import com.lzp.movie.api.MovieService;
 import com.lzp.movie.been.MovieSubjectsBeen;
 
 import butterknife.BindView;
@@ -168,7 +168,7 @@ public class MovieDetailActivity extends BaseActivity {
         });
 
         String subjectId = getIntent().getStringExtra("subjectId");
-        Observable<MovieSubjectsBeen> observableSubject = Api.getApiService().create(ApiService.class).getSubject(subjectId);
+        Observable<MovieSubjectsBeen> observableSubject = Api.getApiService().create(MovieService.class).getSubject(subjectId);
         Api.setSubscribe(observableSubject, new RxSubscriber<MovieSubjectsBeen>() {
             @Override
             public void onNext(MovieSubjectsBeen movieSubjectsBeen) {

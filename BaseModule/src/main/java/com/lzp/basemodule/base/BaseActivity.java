@@ -1,4 +1,4 @@
-package com.lzp.basemodule;
+package com.lzp.basemodule.base;
 
 import android.support.v7.app.AppCompatActivity;
 

@@ -1,8 +1,7 @@
-package com.example.book.api;
+package com.lzp.book.api;
 
-import com.example.book.been.BookBeen;
+import com.lzp.book.been.BookBeen;
 
-import api.ApiConstants;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -11,7 +10,7 @@ import rx.Observable;
  * Created by lzp48947 on 2018/4/16.
  */
 
-public interface ApiService {
-    @GET(ApiConstants.BOOK + ApiConstants.SEARCH)
+public interface BookService {
+    @GET(BookConstants.BOOK + BookConstants.SEARCH)
     Observable<BookBeen> getBooks(@Query("q") String keyword);
 }

@@ -11,12 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lzp.basemodule.BaseFragment;
+import com.lzp.basemodule.base.BaseFragment;
 import com.lzp.movie.R;
 import com.lzp.movie.R2;
 import com.lzp.movie.adapter.MyFragmentPagerAdapter;
 
-import api.ApiConstants;
+import com.lzp.basemodule.api.BaseConstants;
+import com.lzp.movie.api.MovieConstants;
 
 import java.util.ArrayList;
 
@@ -68,9 +69,9 @@ public class MovieFragment extends BaseFragment {
         titles.add(top250);
         //设置fragment
         fragments = new ArrayList<>();
-        inTheatersMovieFragment = MovieFragmentChild.newInstance(ApiConstants.IN_THEATERS);
-        comingSoonMovieFragment = MovieFragmentChild.newInstance(ApiConstants.COMING_SOON);
-        top250MovieFragment = MovieFragmentChild.newInstance(ApiConstants.TOP_250);
+        inTheatersMovieFragment = MovieFragmentChild.newInstance(MovieConstants.IN_THEATERS);
+        comingSoonMovieFragment = MovieFragmentChild.newInstance(MovieConstants.COMING_SOON);
+        top250MovieFragment = MovieFragmentChild.newInstance(MovieConstants.TOP_250);
         fragments.add(inTheatersMovieFragment);
         fragments.add(comingSoonMovieFragment);
         fragments.add(top250MovieFragment);
