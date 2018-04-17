@@ -13,9 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.book.fragment.BookFragment;
 import com.lzp.arouter.ARouterActivity;
 import com.lzp.basemodule.BaseActivity;
 import com.lzp.leaf.R;
+import com.lzp.movie.fragment.MovieFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

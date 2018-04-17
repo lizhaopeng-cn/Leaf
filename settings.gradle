@@ -1,1 +1,1 @@
-include ':app', ':Movie', ':ARouter', ':BaseModule'
+include ':app', ':Movie', ':ARouter', ':BaseModule', ':Book'

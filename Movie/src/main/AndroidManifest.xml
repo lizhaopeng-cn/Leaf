@@ -1,2 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lzp.movie" />
+    package="com.lzp.movie" >
+
+    <application
+        android:allowBackup="true">
+
+        <activity
+            android:name="com.lzp.movie.activity.MovieDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+    </application>
+</manifest>

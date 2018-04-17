@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ARouter/ARouter.iml" filepath="$PROJECT_DIR$/ARouter/ARouter.iml" />
       <module fileurl="file://$PROJECT_DIR$/BaseModule/BaseModule.iml" filepath="$PROJECT_DIR$/BaseModule/BaseModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Book/Book.iml" filepath="$PROJECT_DIR$/Book/Book.iml" />
       <module fileurl="file://$PROJECT_DIR$/Leaf.iml" filepath="$PROJECT_DIR$/Leaf.iml" />
       <module fileurl="file://$PROJECT_DIR$/Movie/Movie.iml" filepath="$PROJECT_DIR$/Movie/Movie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
