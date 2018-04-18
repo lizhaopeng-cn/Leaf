@@ -13,21 +13,20 @@ import android.widget.EditText;
 import com.lzp.book.R;
 import com.lzp.book.R2;
 import com.lzp.book.adapter.BookAdapter;
-import com.lzp.book.api.BookService;
 import com.lzp.book.been.BookBeen;
 import com.lzp.basemodule.base.BaseFragment;
-import com.lzp.basemodule.api.Api;
 
-import com.lzp.basemodule.api.RxSubscriber;
+import com.lzp.book.contract.IBookContract;
+import com.lzp.book.presenter.BookPresenter;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
 
 /**
  * Created by lzp48947 on 2018/1/26.
  */
 
-public class BookFragment extends BaseFragment {
+public class BookFragment extends BaseFragment implements IBookContract.IBookView {
 
     @BindView(R2.id.et_keyword)
     EditText etKeyword;
@@ -43,27 +42,20 @@ public class BookFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_book, null);
         ButterKnife.bind(this, view);
+        final BookPresenter bookPresenter = new BookPresenter(this);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSearch();
+                bookPresenter.goBookModelData(etKeyword.getText().toString());
             }
         });
         return view;
     }
 
-    public void toSearch(){
-        BookService bookService = Api.getApiService().create(BookService.class);
-        Observable<BookBeen> observableBooks = bookService.getBooks(etKeyword.getText().toString());
-        Api.setSubscribe(observableBooks, new RxSubscriber<BookBeen>() {
-            @Override
-            public void onNext(BookBeen bookBeen) {
-                if(bookBeen != null){
-                    BookAdapter bookAdapter = new BookAdapter(getActivity(), bookBeen);
-                    rvResult.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    rvResult.setAdapter(bookAdapter);
-                }
-            }
-        });
+    @Override
+    public void toSearch(BookBeen bookBeen) {
+        BookAdapter bookAdapter = new BookAdapter(getActivity(), bookBeen);
+        rvResult.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvResult.setAdapter(bookAdapter);
     }
 }
