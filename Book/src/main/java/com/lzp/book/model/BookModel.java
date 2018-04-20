@@ -15,20 +15,21 @@ import rx.Observable;
 
 public class BookModel implements IBookContract.IBookModel{
     private BookPresenter bookPresenter;
+    private String keyword;
 
     public BookModel(BookPresenter bookPresenter){
         this.bookPresenter = bookPresenter;
     }
 
     @Override
-    public void getBookData(String etKeyword) {
+    public void getBookData(RxSubscriber<BookBeen> rxSubscriber) {
         BookService bookService = Api.getApiService().create(BookService.class);
-        Observable<BookBeen> observableBooks = bookService.getBooks(etKeyword);
-        Api.setSubscribe(observableBooks, new RxSubscriber<BookBeen>() {
-            @Override
-            public void onNext(BookBeen bookBeen) {
-                bookPresenter.updateBookView(bookBeen);
-            }
-        });
+        Observable<BookBeen> observableBooks = bookService.getBooks(keyword);
+        Api.setSubscribe(observableBooks, rxSubscriber);
+    }
+
+    @Override
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

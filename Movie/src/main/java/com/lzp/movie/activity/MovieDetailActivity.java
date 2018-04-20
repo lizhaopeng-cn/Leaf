@@ -150,11 +150,12 @@ public class MovieDetailActivity extends BaseActivity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_detail);
-        ButterKnife.bind(this);
+    public int getContentViewId() {
+        return R.layout.activity_movie_detail;
+    }
 
+    @Override
+    public void init() {
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -178,4 +179,5 @@ public class MovieDetailActivity extends BaseActivity {
             }
         });
     }
+
 }

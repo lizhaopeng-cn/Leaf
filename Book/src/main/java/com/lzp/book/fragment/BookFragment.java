@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
  */
 
 public class BookFragment extends BaseFragment implements IBookContract.IBookView {
+    private BookPresenter bookPresenter;
 
     @BindView(R2.id.et_keyword)
     EditText etKeyword;
@@ -37,19 +38,21 @@ public class BookFragment extends BaseFragment implements IBookContract.IBookVie
     @BindView(R2.id.rv_result)
     RecyclerView rvResult;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_book, null);
-        ButterKnife.bind(this, view);
-        final BookPresenter bookPresenter = new BookPresenter(this);
+    public int getContentViewId() {
+        return R.layout.activity_book;
+    }
+
+    @Override
+    public void init() {
+        bookPresenter = new BookPresenter(this);
+        bookPresenter.attachView(this);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bookPresenter.goBookModelData(etKeyword.getText().toString());
+                bookPresenter.goBookModelData();
             }
         });
-        return view;
     }
 
     @Override
@@ -57,5 +60,18 @@ public class BookFragment extends BaseFragment implements IBookContract.IBookVie
         BookAdapter bookAdapter = new BookAdapter(getActivity(), bookBeen);
         rvResult.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvResult.setAdapter(bookAdapter);
+    }
+
+    @Override
+    public String getKeyword() {
+        return etKeyword.getText().toString();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(bookPresenter.isViewAttached()){
+            bookPresenter.detachView();
+        }
     }
 }

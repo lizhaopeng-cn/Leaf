@@ -13,8 +13,12 @@ import com.lzp.basemodule.base.BaseActivity;
 public class ARouterActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_router);
+    public int getContentViewId() {
+        return R.layout.activity_router;
     }
+
+    @Override
+    public void init() {
+    }
+
 }

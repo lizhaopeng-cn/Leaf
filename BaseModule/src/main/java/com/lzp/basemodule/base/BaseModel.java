@@ -1,8 +1,8 @@
 package com.lzp.basemodule.base;
 
 /**
- * Created by lzp on 2017/8/8.
+ * Created by lzp48947 on 2018/4/20.
  */
 
-public interface BaseModel {
+public class BaseModel implements IBaseModel {
 }

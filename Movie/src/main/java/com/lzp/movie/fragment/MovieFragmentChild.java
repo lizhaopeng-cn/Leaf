@@ -48,12 +48,13 @@ public class MovieFragmentChild extends BaseFragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public int getContentViewId() {
+        return R.layout.fragment_movie;
+    }
 
-        view = inflater.inflate(R.layout.fragment_movie,container,false);
-        ButterKnife.bind(this, view);
+    @Override
+    public void init() {
         type = getArguments().getString("type");
         MovieService movieService = Api.getApiService().create(MovieService.class);
 
@@ -63,7 +64,6 @@ public class MovieFragmentChild extends BaseFragment {
                 initRecycler(movieBeen);
             }
         });
-        return view;
     }
 
     public void getNetData(MovieService movieService, String api, RxSubscriber rxSubscriber){

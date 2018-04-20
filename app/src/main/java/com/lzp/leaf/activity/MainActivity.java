@@ -39,12 +39,13 @@ public class MainActivity extends BaseActivity
     NavigationView navigationView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setSupportActionBar(toolbar);
-        ButterKnife.bind(this);
+    public int getContentViewId() {
+        return R.layout.activity_main;
+    }
 
+    @Override
+    public void init() {
+        setSupportActionBar(toolbar);
         initDrawer();
         goMovieFragment();
         navigationView.getMenu().getItem(0).setChecked(true);

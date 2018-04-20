@@ -5,7 +5,7 @@ package com.lzp.movie.contract;
  */
 
 public interface MovieContract {
-//    interface Model extends BaseModel(){
+//    interface Model extends IBaseModel(){
 //        Observable<MovieBeen>
 //    }
 }

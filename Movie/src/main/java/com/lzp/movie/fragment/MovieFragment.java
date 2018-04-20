@@ -46,11 +46,13 @@ public class MovieFragment extends BaseFragment {
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private int tabPosition;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.app_bar_main, null);
-        ButterKnife.bind(this, view);
+    public int getContentViewId() {
+        return R.layout.app_bar_main;
+    }
+
+    @Override
+    public void init() {
         initTab();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,6 @@ public class MovieFragment extends BaseFragment {
                 setFabClick();
             }
         });
-        return view;
     }
 
     private void initTab() {
