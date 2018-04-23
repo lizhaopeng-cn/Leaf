@@ -1,7 +1,5 @@
 package com.lzp.movie.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,23 +8,19 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lzp.basemodule.base.BaseActivity;
-import com.lzp.basemodule.api.Api;
-import com.lzp.basemodule.api.RxSubscriber;
-
 import com.lzp.movie.R;
 import com.lzp.movie.R2;
-import com.lzp.movie.api.MovieService;
 import com.lzp.movie.been.MovieSubjectsBeen;
+import com.lzp.movie.contract.MovieDetailContract;
+import com.lzp.movie.presenter.MovieDetailPresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import rx.Observable;
 
 /**
  * Created by lzp48947 on 2017/12/25.
  */
 
-public class MovieDetailActivity extends BaseActivity {
+public class MovieDetailActivity extends BaseActivity implements MovieDetailContract.IMovieDetailView{
 
     @BindView(R2.id.image)
     ImageView image;
@@ -167,17 +161,19 @@ public class MovieDetailActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-
-        String subjectId = getIntent().getStringExtra("subjectId");
-        Observable<MovieSubjectsBeen> observableSubject = Api.getApiService().create(MovieService.class).getSubject(subjectId);
-        Api.setSubscribe(observableSubject, new RxSubscriber<MovieSubjectsBeen>() {
-            @Override
-            public void onNext(MovieSubjectsBeen movieSubjectsBeen) {
-//                collapsingToolbarLayout.setStatusBarScrim(getDrawable(R.mipmap.ic_launcher));
-                collapsingToolbarLayout.setTitle(movieSubjectsBeen.getTitle());
-                Glide.with(MovieDetailActivity.this).load(movieSubjectsBeen.getImages().getSmall()).into(image);
-            }
-        });
+        MovieDetailPresenter movieDetailPresenter = new MovieDetailPresenter(this);
+        movieDetailPresenter.goMovieDetailModelData();
     }
 
+    @Override
+    public void setView(MovieSubjectsBeen movieSubjectsBeen) {
+        collapsingToolbarLayout.setTitle(movieSubjectsBeen.getTitle());
+        Glide.with(MovieDetailActivity.this).load(movieSubjectsBeen.getImages().getSmall()).into(image);
+    }
+
+    @Override
+    public String getSubjectId() {
+        String subjectId = getIntent().getStringExtra("subjectId");
+        return subjectId;
+    }
 }

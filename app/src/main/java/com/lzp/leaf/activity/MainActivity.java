@@ -2,8 +2,6 @@ package com.lzp.leaf.activity;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -17,10 +15,9 @@ import com.lzp.book.fragment.BookFragment;
 import com.lzp.arouter.ARouterActivity;
 import com.lzp.basemodule.base.BaseActivity;
 import com.lzp.leaf.R;
-import com.lzp.movie.fragment.MovieFragment;
+import com.lzp.leaf.fragment.MainFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by lzp48947 on 2018/4/12.
@@ -120,8 +117,8 @@ public class MainActivity extends BaseActivity
     public void goMovieFragment(){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        MovieFragment movieFragment = new MovieFragment();
-        transaction.replace(R.id.fragment, movieFragment);
+        MainFragment mainFragment = new MainFragment();
+        transaction.replace(R.id.fragment, mainFragment);
         transaction.commit();
     }
 

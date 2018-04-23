@@ -1,4 +1,4 @@
-package com.lzp.movie.adapter;
+package com.lzp.leaf.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
