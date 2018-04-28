@@ -1,5 +1,7 @@
 package com.lzp.book.fragment;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import com.lzp.book.been.BookBeen;
 import com.lzp.basemodule.base.BaseFragment;
 
 import com.lzp.book.contract.IBookContract;
+import com.lzp.book.databinding.ActivityBookBinding;
 import com.lzp.book.presenter.BookPresenter;
 
 import butterknife.BindView;
@@ -47,12 +50,30 @@ public class BookFragment extends BaseFragment implements IBookContract.IBookVie
     public void init() {
         bookPresenter = new BookPresenter(this);
         bookPresenter.attachView(this);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bookPresenter.goBookModelData();
-            }
-        });
+//        btnSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bookPresenter.goBookModelData();
+//            }
+//        });
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ActivityBookBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_book, container, false);
+        BookBeen bookBeen = new BookBeen();
+        bookBeen.setStart(0);
+        bookBeen.setCount(10);
+        bookBeen.setTotal(100);
+        binding.setBookBeen(bookBeen);
+//        binding.setOnClickListener(this);
+//        init();
+        return binding.getRoot();
+    }
+
+    public void searchClick(){
+        bookPresenter.goBookModelData();
     }
 
     @Override
@@ -74,4 +95,5 @@ public class BookFragment extends BaseFragment implements IBookContract.IBookVie
             bookPresenter.detachView();
         }
     }
+
 }

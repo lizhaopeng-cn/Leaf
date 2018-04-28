@@ -142,7 +142,7 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
     @BindView(R2.id.tv_rating_stars)
     TextView tv_rating_stars;
 
-
+    private MovieDetailPresenter movieDetailPresenter;
     @Override
     public int getContentViewId() {
         return R.layout.activity_movie_detail;
@@ -161,7 +161,8 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
                 onBackPressed();
             }
         });
-        MovieDetailPresenter movieDetailPresenter = new MovieDetailPresenter(this);
+        movieDetailPresenter = new MovieDetailPresenter();
+        movieDetailPresenter.attachView(this);
         movieDetailPresenter.goMovieDetailModelData();
     }
 
@@ -175,5 +176,13 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
     public String getSubjectId() {
         String subjectId = getIntent().getStringExtra("subjectId");
         return subjectId;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!movieDetailPresenter.isViewAttached()){
+            movieDetailPresenter.detachView();
+        }
     }
 }

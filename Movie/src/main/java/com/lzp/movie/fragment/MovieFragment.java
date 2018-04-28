@@ -27,6 +27,8 @@ public class MovieFragment extends BaseFragment implements MovieContract.IMovieV
 
     private String type;
 
+    private MoviePresenter moviePresenter;
+
     public static MovieFragment newInstance(String type) {
         Bundle bundle = new Bundle();
         bundle.putString("type", type);
@@ -37,7 +39,8 @@ public class MovieFragment extends BaseFragment implements MovieContract.IMovieV
 
     @Override
     public void init() {
-        MoviePresenter moviePresenter = new MoviePresenter(this);
+        moviePresenter = new MoviePresenter();
+        moviePresenter.attachView(this);
         type = getArguments().getString("type");
         moviePresenter.goMovieModelData();
     }
@@ -72,4 +75,11 @@ public class MovieFragment extends BaseFragment implements MovieContract.IMovieV
         rvMovie.setAdapter(movieAdapter);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(moviePresenter.isViewAttached()){
+            moviePresenter.detachView();
+        }
+    }
 }

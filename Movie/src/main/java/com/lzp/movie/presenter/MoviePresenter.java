@@ -12,12 +12,10 @@ import com.lzp.movie.model.MovieModel;
 
 public class MoviePresenter extends BasePresenter implements MovieContract.IMoviePersenter {
     private MovieContract.IMovieView movieView;
-    public MoviePresenter(MovieContract.IMovieView movieView){
-        this.movieView = movieView;
-    }
 
     @Override
     public void goMovieModelData() {
+        movieView = (MovieContract.IMovieView)getView();
         MovieModel movieModel = new MovieModel(this);
         String type = movieView.getMovieType();
         movieModel.setMovieType(type);
@@ -25,8 +23,10 @@ public class MoviePresenter extends BasePresenter implements MovieContract.IMovi
         movieModel.getMovieData(new RxSubscriber<MovieBeen>() {
             @Override
             public void onNext(MovieBeen movieBeen) {
-                movieView.initRecycler(movieBeen);
-                movieView.hideLoading();
+                if(isViewAttached()){
+                    movieView.initRecycler(movieBeen);
+                    movieView.hideLoading();
+                }
             }
         });
     }

@@ -13,19 +13,19 @@ import com.lzp.movie.model.MovieDetailModel;
 public class MovieDetailPresenter extends BasePresenter implements MovieDetailContract.IMovieDetailPresenter{
     private MovieDetailContract.IMovieDetailView movieDetailView;
 
-    public MovieDetailPresenter(MovieDetailContract.IMovieDetailView movieDetailView){
-        this.movieDetailView = movieDetailView;
-    }
 
     @Override
     public void goMovieDetailModelData() {
+        movieDetailView = (MovieDetailContract.IMovieDetailView)getView();
         MovieDetailModel movieDetailModel = new MovieDetailModel(this);
         String subjectId = movieDetailView.getSubjectId();
         movieDetailModel.setSubjectId(subjectId);
         movieDetailModel.getMovieDetailData(new RxSubscriber<MovieSubjectsBeen>() {
             @Override
             public void onNext(MovieSubjectsBeen movieSubjectsBeen) {
-                movieDetailView.setView(movieSubjectsBeen);
+                if(isViewAttached()){
+                    movieDetailView.setView(movieSubjectsBeen);
+                }
             }
         });
     }
