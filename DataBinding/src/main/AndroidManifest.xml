@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lzp.arouter" >
+    package="com.lzp.databinding" >
 
     <application
         android:allowBackup="true"
@@ -7,7 +7,7 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".ARouterActivity">
+            android:name="com.lzp.databinding.DataBindingActivity">
         </activity>
 
     </application>

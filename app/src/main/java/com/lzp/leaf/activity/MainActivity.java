@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.lzp.book.fragment.BookFragment;
-import com.lzp.arouter.ARouterActivity;
+import com.lzp.databinding.DataBindingActivity;
 import com.lzp.basemodule.base.BaseActivity;
 import com.lzp.leaf.R;
 import com.lzp.leaf.fragment.MainFragment;
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_gallery) {
             goBookFragment();
         } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(MainActivity.this, ARouterActivity.class);
+            Intent intent = new Intent(MainActivity.this, DataBindingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
 

@@ -8,9 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/ARouter" />
             <option value="$PROJECT_DIR$/BaseModule" />
             <option value="$PROJECT_DIR$/Book" />
+            <option value="$PROJECT_DIR$/DataBinding" />
             <option value="$PROJECT_DIR$/Movie" />
             <option value="$PROJECT_DIR$/app" />
           </set>

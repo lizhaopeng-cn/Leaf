@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 转义字符
+    显示结果	描述	转义字符	十进制
+              空格	&nbsp；	&#160；
+        <	小于号	&lt；	&#60；
+        >	大于号	&gt；	&#62；
+        &	与号	&amp；	&#38；
+        "	引号	&quot；	&#34；
+        ‘	撇号	&apos；	&#39；
+        ×	乘号	&times；	&#215；
+        ÷	除号	&divide；	&#247；
+    -->
+
+    <data>
+        <variable
+            name="str"
+            type="String">
+        </variable>
+        <variable
+            name="i"
+            type="int">
+        </variable>
+        
+        <variable
+            name="list"
+            type="java.util.List&lt;String&gt;">
+        </variable>
+        <variable
+            name="map"
+            type="java.util.Map&lt;String,String&gt;">
+        </variable>
+        <variable
+            name="array"
+            type="String[]">
+        </variable>
+
+        <import type="com.lzp.databinding.person2.Person" alias="Person2"></import>
+        <variable
+            name="person"
+            type="com.lzp.databinding.Person">
+        </variable>
+        <variable
+            name="person2"
+            type="Person2">
+        </variable>
+
+        <variable
+            name="button2"
+            type="android.view.View.OnClickListener">
+        </variable>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="基础类型"
+            android:textColor="#f00"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{str}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(i)}'/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数组集合"
+            android:textColor="#f00"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list[0]}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{list.get(1)}'/>
+
+        <!--必须用单引号-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{map["key0"]}'/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{map.get(`key1`)}'/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{array[0]}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{array[1]}'/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义对象"
+            android:textColor="#f00"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"name:" + person.name}'/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{person.age > 30 ? String.valueOf(person.age) : String.valueOf(person.age + 1)}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"person2:" + person2.name}'/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击事件"
+            android:textColor="#f00"/>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="button1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{button2}"
+            android:text="button2"/>
+
+    </LinearLayout>
+
+</layout>

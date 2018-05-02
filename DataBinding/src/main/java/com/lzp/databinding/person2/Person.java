@@ -1,4 +1,4 @@
-package com.lzp.arouter;
+package com.lzp.databinding.person2;
 
 /**
  * Created by lzp48947 on 2018/4/27.

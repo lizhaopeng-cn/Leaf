@@ -1,4 +1,4 @@
-package com.lzp.arouter;
+package com.lzp.databinding;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
