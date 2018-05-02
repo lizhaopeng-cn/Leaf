@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 转义字符
-    显示结果	描述	转义字符	十进制
-              空格	&nbsp；	&#160；
-        <	小于号	&lt；	&#60；
-        >	大于号	&gt；	&#62；
-        &	与号	&amp；	&#38；
-        "	引号	&quot；	&#34；
-        ‘	撇号	&apos；	&#39；
-        ×	乘号	&times；	&#215；
-        ÷	除号	&divide；	&#247；
-    -->
 
     <data>
+
         <variable
             name="str"
             type="String">
@@ -49,6 +39,18 @@
             name="button2"
             type="android.view.View.OnClickListener">
         </variable>
+
+        <import type="android.databinding.ObservableArrayMap"></import>
+        <variable
+            name="person3"
+            type="ObservableArrayMap&lt;String, Object&gt;">
+        </variable>
+        <variable
+            name="button3"
+            type="com.lzp.databinding.DataBindingActivity">
+        </variable>
+
+
     </data>
 
     <LinearLayout
@@ -118,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"name:" + person.name}'/>
+            android:text='@{"name：" + person.name}'/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,7 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"person2:" + person2.name}'/>
+            android:text='@{"person2：" + (person2.name ?? String.valueOf(person2.age))}'/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -140,14 +142,57 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="button1"/>
+            android:text="@{person.name}"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{button2}"
-            android:text="button2"/>
+            android:text="@{person2.name}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{button3.click}"
+            android:text='@{person3["name"]}'/>
 
     </LinearLayout>
 
 </layout>
+<!-- 转义字符
+
+    显示结果	    描述	        转义字符	    十进制
+                空格	        &nbsp；	    &#160；
+        <	    小于号	    &lt；	    &#60；
+        >	    大于号	    &gt；	    &#62；
+        &	    与号	        &amp；	    &#38；
+        "	    引号	        &quot；	    &#34；
+        ‘	    撇号	        &apos；	    &#39；
+        ×	    乘号	        &times；	    &#215；
+        ÷	    除号	        &divide；	&#247；
+-->
+<!--支持的表达式语言
+
+    数学计算 + - / * %
+    字符串连接 +
+    逻辑 && ||
+    二进制 & | ^
+    一元 + - ! ~
+    位移 >> >>> <<
+    比较 == > < >= <=
+    instanceof
+    组 ()
+    字面量 - 字符，字符串，数字， null
+    类型转换
+    函数调用
+    字段存取
+    数组存取 []
+    三元运算符 ?：
+-->
+<!--不支持的操作符
+
+    this
+    super
+    new
+    显式泛型调用 <T>
+-->
