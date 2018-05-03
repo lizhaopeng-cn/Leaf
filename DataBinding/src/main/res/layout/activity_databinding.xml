@@ -11,7 +11,7 @@
             name="i"
             type="int">
         </variable>
-        
+
         <variable
             name="list"
             type="java.util.List&lt;String&gt;">
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"name：" + person.name}'/>
+            android:text='@{"name:" + person.name}'/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"person2：" + (person2.name ?? String.valueOf(person2.age))}'/>
+            android:text='@{"person2:" + (person2.name ?? String.valueOf(person2.age))}'/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -156,6 +156,11 @@
             android:onClick="@{button3.click}"
             android:text='@{person3["name"]}'/>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 </layout>

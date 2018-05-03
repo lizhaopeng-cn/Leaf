@@ -3,12 +3,11 @@ package com.lzp.databinding;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayMap;
-import android.databinding.ObservableMap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.Toast;
 
 import com.lzp.databinding.databinding.ActivityDatabindingBinding;
 
@@ -22,6 +21,7 @@ import java.util.List;
 
 public class DataBindingActivity extends AppCompatActivity {
     private ObservableArrayMap<String,Object> person3;
+    private DataBindingAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,10 +71,27 @@ public class DataBindingActivity extends AppCompatActivity {
             }
         });
         binding.setButton3(this);
+
+        setRecyclerView(binding);
     }
 
     public void click(View view){
         person3.put("name", "王五click");
+        adapter.notifyDataSetChanged();
+    }
+
+    private void setRecyclerView(ActivityDatabindingBinding binding) {
+        List<Person> personList = new ArrayList<>();
+        for(int i = 0; i < 100; i++){
+            Person person = new Person();
+            person.setAge(i);
+            person.setName("赵六" + String.valueOf(i));
+            personList.add(person);
+        }
+
+        adapter = new DataBindingAdapter(this, personList);
+        binding.recycle.setLayoutManager(new LinearLayoutManager(this));
+        binding.recycle.setAdapter(adapter);
     }
 
 }
