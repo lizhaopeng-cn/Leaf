@@ -1,6 +1,7 @@
 package com.lzp.databinding.utils;
 
 import android.databinding.BindingAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -17,5 +18,9 @@ public class ImageHelper {
                 .load(url)
                 .error(R.mipmap.ic_launcher_round)
                 .into(imageView);
+    }
+    @BindingAdapter({"setTexta"})
+    public static void loadText(EditText editText, String age) {
+        editText.setText(age);
     }
 }

@@ -169,7 +169,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={person.name}"/>
+            android:text="@={person.name}"
+            app:setTexta="@{String.valueOf(person.age)}"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle"
