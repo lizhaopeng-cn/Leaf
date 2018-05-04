@@ -21,7 +21,7 @@ public class BookPresenter extends BasePresenter implements IBookContract.IBookP
         bookView = (IBookContract.IBookView)getView();
         BookModel bookModel = new BookModel(this);
         bookModel.setKeyword(bookView.getKeyword());
-        bookView.showLoading();
+//        bookView.showLoading();
         bookModel.getBookData(new RxSubscriber<BookBeen>() {
             @Override
             public void onNext(BookBeen bookBeen) {

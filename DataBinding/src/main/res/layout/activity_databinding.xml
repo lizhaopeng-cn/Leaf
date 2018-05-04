@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
         <variable
             name="str"
             type="String">
@@ -49,8 +48,6 @@
             name="button3"
             type="com.lzp.databinding.DataBindingActivity">
         </variable>
-
-
     </data>
 
     <LinearLayout
@@ -138,29 +135,48 @@
             android:text="点击事件"
             android:textColor="#f00"/>
 
-        <Button
-            android:id="@+id/button1"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{person.name}"/>
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{button2}"
-            android:text="@{person2.name}"/>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{person.name}"/>
 
-        <Button
-            android:layout_width="wrap_content"
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{button2}"
+                android:text="@{person2.name}"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{button3.click}"
+                android:text='@{person3["name"]}'/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerInside"
+            app:imageUrl="@{person.logo}"/>
+
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{button3.click}"
-            android:text='@{person3["name"]}'/>
+            android:text="@={person.name}"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
 
 </layout>
