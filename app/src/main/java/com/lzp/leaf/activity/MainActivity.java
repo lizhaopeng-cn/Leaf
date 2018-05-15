@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        String git = "stash";
         if (id == R.id.nav_camera) {
             goMovieFragment();
         } else if (id == R.id.nav_gallery) {
