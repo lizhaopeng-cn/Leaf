@@ -99,6 +99,7 @@ public class MainActivity extends BaseActivity
             goMovieFragment();
         } else if (id == R.id.nav_gallery) {
             goBookFragment();
+
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(MainActivity.this, DataBindingActivity.class);
             startActivity(intent);
