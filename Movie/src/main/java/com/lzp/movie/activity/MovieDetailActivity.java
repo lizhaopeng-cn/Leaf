@@ -14,6 +14,8 @@ import com.lzp.movie.been.MovieSubjectsBeen;
 import com.lzp.movie.contract.MovieDetailContract;
 import com.lzp.movie.presenter.MovieDetailPresenter;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
 /**
@@ -142,7 +144,8 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
     @BindView(R2.id.tv_rating_stars)
     TextView tv_rating_stars;
 
-    private MovieDetailPresenter movieDetailPresenter;
+    @Inject
+    MovieDetailPresenter movieDetailPresenter;
     @Override
     public int getContentViewId() {
         return R.layout.activity_movie_detail;
@@ -161,7 +164,7 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
                 onBackPressed();
             }
         });
-        movieDetailPresenter = new MovieDetailPresenter();
+//        movieDetailPresenter = new MovieDetailPresenter();
         movieDetailPresenter.attachView(this);
         movieDetailPresenter.goMovieDetailModelData();
     }

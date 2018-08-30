@@ -6,12 +6,17 @@ import com.lzp.movie.been.MovieBeen;
 import com.lzp.movie.contract.MovieContract;
 import com.lzp.movie.model.MovieModel;
 
+import javax.inject.Inject;
+
 /**
  * Created by lzp48947 on 2018/4/23.
  */
 
 public class MoviePresenter extends BasePresenter implements MovieContract.IMoviePersenter {
     private MovieContract.IMovieView movieView;
+
+//    @Inject
+    MovieModel movieModel;
 
     @Override
     public void goMovieModelData() {

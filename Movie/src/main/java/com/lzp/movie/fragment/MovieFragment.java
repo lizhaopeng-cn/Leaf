@@ -1,85 +1,103 @@
 package com.lzp.movie.fragment;
 
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.lzp.basemodule.base.BaseFragment;
 import com.lzp.movie.R;
 import com.lzp.movie.R2;
-import com.lzp.movie.adapter.MovieAdapter;
-import com.lzp.movie.been.MovieBeen;
-import com.lzp.movie.contract.MovieContract;
-import com.lzp.movie.presenter.MoviePresenter;
 
+import com.lzp.movie.activity.MyFragmentPagerAdapter;
+import com.lzp.movie.api.MovieConstants;
+
+import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.OnClick;
 
-/**
- * Created by lzp on 2017/8/8.
- */
+public class MovieFragment extends BaseFragment {
 
-public class MovieFragment extends BaseFragment implements MovieContract.IMovieView{
+    @BindView(R2.id.fab)
+    FloatingActionButton fab;
 
-    @BindView(R2.id.rv_movie)
-    RecyclerView rvMovie;
+    @BindView(R2.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R2.id.viewPager)
+    ViewPager viewPager;
 
-    private MovieAdapter movieAdapter;
+    @BindString(R2.string.in_theaters)
+    public String inTheaters;
+    @BindString(R2.string.coming_soon)
+    public String comingSoon;
+    @BindString(R2.string.top250)
+    public String top250;
 
-    private String type;
+//    private ArrayList<String> titles;
+//    private ArrayList<Fragment> fragments;
+//    private MovieTypeFragment inTheatersMovieTypeFragment;
+//    private MovieTypeFragment comingSoonMovieTypeFragment;
+//    private MovieTypeFragment top250MovieTypeFragment;
 
-    private MoviePresenter moviePresenter;
+    @Inject
+    private MyFragmentPagerAdapter myFragmentPagerAdapter;
 
-    public static MovieFragment newInstance(String type) {
-        Bundle bundle = new Bundle();
-        bundle.putString("type", type);
-        MovieFragment fragment = new MovieFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+    private int tabPosition;
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.app_bar_main;
     }
 
     @Override
     public void init() {
-        moviePresenter = new MoviePresenter();
-        moviePresenter.attachView(this);
-        type = getArguments().getString("type");
-        moviePresenter.goMovieModelData();
-    }
-
-    @Override
-    public int getContentViewId() {
-        return R.layout.fragment_movie;
-    }
-
-    @Override
-    public String getMovieType() {
-        return type;
-    }
-
-    @Override
-    public void initRecycler(MovieBeen movieBeen) {
-        movieAdapter = new MovieAdapter(getActivity(),movieBeen);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+        initTab();
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public int getSpanSize(int position) {
-                if(position == 0){
-                    return 2;
-                }else{
-                    return 1;
-                }
+            public void onClick(View v) {
+                setFabClick();
             }
         });
-        rvMovie.setLayoutManager(gridLayoutManager);
-//        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-//        rvMovie.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL));
-        rvMovie.setAdapter(movieAdapter);
+    }
+
+    private void initTab() {
+//        //设置title数据
+//        titles = new ArrayList<>();
+//        titles.add(inTheaters);
+//        titles.add(comingSoon);
+//        titles.add(top250);
+//        //设置fragment
+//        fragments = new ArrayList<>();
+//        inTheatersMovieTypeFragment = MovieTypeFragment.newInstance(MovieConstants.IN_THEATERS);
+//        comingSoonMovieTypeFragment = MovieTypeFragment.newInstance(MovieConstants.COMING_SOON);
+//        top250MovieTypeFragment = MovieTypeFragment.newInstance(MovieConstants.TOP_250);
+//        fragments.add(inTheatersMovieTypeFragment);
+//        fragments.add(comingSoonMovieTypeFragment);
+//        fragments.add(top250MovieTypeFragment);
+        //绑定fragment
+//        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragments, titles);
+        viewPager.setAdapter(myFragmentPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        //设置上一次tab
+        tabLayout.getTabAt(tabPosition).select();
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if(moviePresenter.isViewAttached()){
-            moviePresenter.detachView();
-        }
+    public void onStop() {
+        super.onStop();
+        tabPosition = tabLayout.getSelectedTabPosition();
     }
+
+    @OnClick(R2.id.fab)
+    void setFabClick(){
+        Snackbar.make(fab, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
 }

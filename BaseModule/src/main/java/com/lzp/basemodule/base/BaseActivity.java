@@ -3,16 +3,16 @@ package com.lzp.basemodule.base;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
+import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * Created by lzp on 2017/8/8.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements IBaseView{
+public abstract class BaseActivity extends DaggerAppCompatActivity implements IBaseView{
     private ProgressDialog progressDialog;
 
     public abstract int getContentViewId();

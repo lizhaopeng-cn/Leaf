@@ -10,6 +10,8 @@ import com.lzp.movie.been.MovieBeen;
 import com.lzp.movie.contract.MovieContract;
 import com.lzp.movie.presenter.MoviePresenter;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 /**
@@ -17,7 +19,8 @@ import rx.Observable;
  */
 
 public class MovieModel extends BaseModel implements MovieContract.IMovieModel {
-    private MoviePresenter moviePresenter;
+//    @Inject
+    MoviePresenter moviePresenter;
     private String type;
     public MovieModel(MoviePresenter moviePresenter){
         this.moviePresenter = moviePresenter;

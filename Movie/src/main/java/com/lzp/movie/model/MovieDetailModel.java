@@ -8,6 +8,8 @@ import com.lzp.movie.been.MovieSubjectsBeen;
 import com.lzp.movie.contract.MovieDetailContract;
 import com.lzp.movie.presenter.MovieDetailPresenter;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 /**
@@ -15,7 +17,8 @@ import rx.Observable;
  */
 
 public class MovieDetailModel extends BaseModel implements MovieDetailContract.IMovieDetailModel {
-    private MovieDetailPresenter movieDetailPresenter;
+//    @Inject
+    MovieDetailPresenter movieDetailPresenter;
     private String subjectId;
 
     public MovieDetailModel(MovieDetailPresenter movieDetailPresenter){

@@ -1,4 +1,4 @@
-package com.lzp.leaf.activity;
+package com.lzp.leaf;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
@@ -14,8 +14,9 @@ import android.view.MenuItem;
 import com.lzp.book.fragment.BookFragment;
 import com.lzp.databinding.DataBindingActivity;
 import com.lzp.basemodule.base.BaseActivity;
-import com.lzp.leaf.R;
-import com.lzp.leaf.fragment.MainFragment;
+import com.lzp.movie.fragment.MovieFragment;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -34,6 +35,9 @@ public class MainActivity extends BaseActivity
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    @Inject
+    MovieFragment movieFragment;
 
     @Override
     public int getContentViewId() {
@@ -119,8 +123,8 @@ public class MainActivity extends BaseActivity
     public void goMovieFragment(){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        MainFragment mainFragment = new MainFragment();
-        transaction.replace(R.id.fragment, mainFragment);
+//        MovieFragment movieFragment = new MovieFragment();
+        transaction.replace(R.id.fragment, movieFragment);
         transaction.commit();
     }
 
