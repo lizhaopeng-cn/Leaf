@@ -1,4 +1,4 @@
-package com.lzp.movie.di.movie_item_fragment;
+package com.lzp.movie.di.module;
 
 import android.content.Context;
 

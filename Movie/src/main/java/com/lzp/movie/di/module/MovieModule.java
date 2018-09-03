@@ -1,4 +1,4 @@
-package com.lzp.movie.di.movie_fragment;
+package com.lzp.movie.di.module;
 
 import android.support.v4.app.Fragment;
 

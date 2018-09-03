@@ -1,8 +1,8 @@
 package com.lzp.movie.di;
 
-import com.lzp.movie.di.movie_fragment.MovieModule;
-import com.lzp.movie.di.movie_item_fragment.MovieTypeModule;
-import com.lzp.movie.di.movie_detail_activity.MovieDetailModule;
+import com.lzp.movie.di.module.MovieModule;
+import com.lzp.movie.di.module.MovieTypeModule;
+import com.lzp.movie.di.module.MovieDetailModule;
 import com.lzp.movie.fragment.MovieFragment;
 
 import dagger.Module;

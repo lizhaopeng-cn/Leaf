@@ -1,4 +1,4 @@
-package com.lzp.movie.di.movie_detail_activity;
+package com.lzp.movie.di.module;
 
 import android.content.Context;
 
