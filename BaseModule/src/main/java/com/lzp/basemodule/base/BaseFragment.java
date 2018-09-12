@@ -12,12 +12,13 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.support.DaggerFragment;
 
 /**
  * Created by lzp on 2017/8/8.
  */
 
-public abstract class BaseFragment extends Fragment implements IBaseView{
+public abstract class BaseFragment extends DaggerFragment implements IBaseView{
     private ProgressDialog progressDialog;
 
     public abstract int getContentViewId();
