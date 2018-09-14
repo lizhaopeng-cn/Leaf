@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity
     public void goMovieFragment(){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-//        MovieFragment movieFragment = new MovieFragment();
+        MovieFragment movieFragment = new MovieFragment();
         transaction.replace(R.id.fragment, movieFragment);
         transaction.commit();
     }

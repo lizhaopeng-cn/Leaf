@@ -35,8 +35,8 @@ public class MovieModule {
         return new MyFragmentPagerAdapter(movieFragment.getChildFragmentManager(), fragments, titles);
     }
 
-    @Provides
-    public MovieFragment provideMovieFragment(){
-        return new MovieFragment();
-    }
+//    @Provides
+//    public MovieFragment provideMovieFragment(){
+//        return new MovieFragment();
+//    }
 }

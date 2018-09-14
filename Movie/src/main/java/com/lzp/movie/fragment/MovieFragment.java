@@ -46,7 +46,7 @@ public class MovieFragment extends BaseFragment {
 //    private MovieTypeFragment top250MovieTypeFragment;
 
     @Inject
-    private MyFragmentPagerAdapter myFragmentPagerAdapter;
+    MyFragmentPagerAdapter myFragmentPagerAdapter;
 
     private int tabPosition;
 
