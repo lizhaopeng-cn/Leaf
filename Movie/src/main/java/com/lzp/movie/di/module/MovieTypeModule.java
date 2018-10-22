@@ -1,5 +1,6 @@
 package com.lzp.movie.di.module;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.lzp.movie.adapter.MovieAdapter;
@@ -21,8 +22,8 @@ public class MovieTypeModule {
     }
 
     @Provides
-    public MovieAdapter provideMovieAdapter(Context context, MovieBeen movieBeen){
-        return new MovieAdapter(context, movieBeen);
+    public MovieAdapter provideMovieAdapter(Activity activity, MovieBeen movieBeen){
+        return new MovieAdapter(activity, movieBeen);
     }
 
 //    @Provides

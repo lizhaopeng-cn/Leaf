@@ -1,5 +1,6 @@
 package com.lzp.movie.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -29,26 +30,26 @@ import butterknife.ButterKnife;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
 
-    private Context context;
+    private Activity activity;
     private MovieBeen movieBeen;
     private List<MovieSubjectsBeen> movies;
 
-    public MovieAdapter(Context context, MovieBeen movieBeen){
-        this.context = context;
+    public MovieAdapter(Activity activity, MovieBeen movieBeen){
+        this.activity = activity;
         this.movieBeen = movieBeen;
         this.movies = movieBeen.getSubjects();
     }
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_movie_gride, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_movie_gride, parent, false);
         return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         final MovieSubjectsBeen movie = movies.get(position);
-        Glide.with(context).load(movie.getImages().getMedium()).into(holder.image);
+        Glide.with(activity).load(movie.getImages().getMedium()).into(holder.image);
         holder.title.setText(movie.getTitle());
         holder.rating.setText(String.valueOf(movie.getRating().getAverage()));
 //        holder.director.setText(movie.getDirectors().get(0).getName());
@@ -65,9 +66,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MovieDetailActivity.class);
+                Intent intent = new Intent(activity, MovieDetailActivity.class);
                 intent.putExtra("subjectId", movie.getId());
-                context.startActivity(intent);
+                activity.startActivity(intent);
             }
         });
     }
