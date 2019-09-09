@@ -102,12 +102,9 @@ public class DataBindingActivity extends AppCompatActivity {
     }
 
     private void setRecyclerView() {
-        List<Person> personList = new ArrayList<>();
+        List<com.lzp.databinding.person2.Person> personList = new ArrayList<>();
         for(int i = 0; i < 100; i++){
-            Person person = new Person();
-            person.setAge(i);
-            person.setName("赵六" + String.valueOf(i));
-            personList.add(person);
+            personList.add(person2);
         }
 
         adapter = new DataBindingAdapter(this, personList);
@@ -117,7 +114,7 @@ public class DataBindingActivity extends AppCompatActivity {
 
     public void click(View view){
         person3.put("name", "王五click");
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 
 }

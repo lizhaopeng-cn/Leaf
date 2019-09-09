@@ -17,9 +17,9 @@ import java.util.List;
 
 public class DataBindingAdapter extends RecyclerView.Adapter<DataBindingAdapter.MyViewHodler>{
     private Context context;
-    private List<Person> personList;
+    private List<com.lzp.databinding.person2.Person> personList;
 
-    public DataBindingAdapter(Context context, List<Person> personList){
+    public DataBindingAdapter(Context context, List<com.lzp.databinding.person2.Person> personList){
         this.context = context;
         this.personList = personList;
     }

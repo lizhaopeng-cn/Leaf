@@ -24,6 +24,7 @@ public class MovieBeen extends DouBanError{
     private String title;
     private List<MovieSubjectsBeen> subjects;
 
+
     public int getCount() {
         return count;
     }

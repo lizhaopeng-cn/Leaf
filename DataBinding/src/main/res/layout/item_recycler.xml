@@ -4,7 +4,7 @@
 
         <variable
             name="person"
-            type="com.lzp.databinding.Person">
+            type="com.lzp.databinding.person2.Person">
         </variable>
 
     </data>
